@@ -24,9 +24,9 @@ app.use(methodOR("_method"));
 app.set("view engine", "ejs");
 app.use(flash());
 
-// ** Change later to associate with mLab **
-mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true });
-
+// DATABASE CONNECTIONs
+//mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true });
+mongoose.connect("mongodb://ricoflorentino:campplanner1@ds119702.mlab.com:19702/campplanner",  {useNewUrlParser: true });
 // Set up passport (app authentication)
 
 app.use(require("express-session")({
