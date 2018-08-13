@@ -28,7 +28,7 @@ app.use(flash());
 //mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true });
 mongoose.connect("mongodb://ricoflorentino:campplanner1@ds119702.mlab.com:19702/campplanner",  {useNewUrlParser: true });
 // Set up passport (app authentication)
-
+console.log(process.env.DATABASEURL);
 app.use(require("express-session")({
     secret: "this is my first personal project",
     resave: false,
@@ -298,6 +298,6 @@ function remove_duplicates(arr) {
 }
 
 // Listening ....
-app.listen(process.env.PORT, process.env.IP, function(){
-    console.log("SERVER RUNNING");
-});
+// app.listen(process.env.PORT, process.env.IP, function(){
+//     console.log("SERVER RUNNING");
+// });
