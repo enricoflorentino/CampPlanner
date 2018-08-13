@@ -1,0 +1,130 @@
+<% include ./partials/header %>
+<div class="container">
+<div style="width: 40%; margin: 15px auto;">
+   <h1 style="text-align: center; margin-top: 40px">Update <%=camp.name%> as <%=currentUser.firstname%></h1>
+   <hr>
+   <form action="/plan/<%=camp._id%>?_method=PUT" method="POST">
+      <% if(currentUser  && camp.creator.id.equals(currentUser._id)) { %>
+      <h3 style="text-align: center; margin-bottom: 20px" >
+      Make changes as admin: </h1>
+      <small class="text-muted">Leave blank to keep original input</small>
+      <div class="form-group">
+         <label for="name">Change name</label>
+         <input class="form-control" id="name" type="text" name="name" maxlength="25" >
+      </div>
+      <div class="form-group">
+         <label for="numPpl">Change number of people going</label>
+         <input class="form-control" id="numPpl" type="number" value="1" name="numPpl" min="0" >
+      </div>
+      <div class="form-group">
+         <label for="numPpl">Change location</label>
+         <input class="form-control" id="address" type="text" placeholder="location" name="address">
+      </div>
+      <div class="form-group">
+         <label for="beginDate">Change start date</label>
+         <input class="form-control" id="beginDate" type="date" name="beginDate" >
+      </div>
+      <div class="form-group">
+         <div class="collapse time">
+            <div class="card card-body">
+               <input class="form-control" id="beginTime" type="time" name="beginTime">
+            </div>
+         </div>
+      </div>
+      <div class="form-group">
+         <label for="endDate">Change end date</label>
+         <input class="form-control" id="endDate" type="date" name="endDate" >
+      </div>
+      <div class="collapse time">
+         <div class="card card-body">
+            <input class="form-control" id="endTime" type="time" name="endTime">
+         </div>
+      </div>
+      <button class="form-control btn btn-dark" type="button" data-toggle="collapse" data-target=".time" aria-expanded="false">
+      Change time!
+      </button>
+      <hr>
+      <div class="form-group">
+         <button class="form-control btn btn-success" type="button" data-toggle="collapse" data-target="#budget" aria-expanded="false">
+         Change budget?
+         </button>
+         <div class="collapse" id="budget" style="margin-top: 3px">
+            <div class="card card-body">
+               <input class="form-control" type="number" name="budget" placeholder="budget">
+            </div>
+         </div>
+      </div>
+      <div class="form-group">
+         <button class="form-control btn btn-link" type="button" data-toggle="collapse" data-target="#linkToSite" aria-expanded="false">
+         Change link to the cottage ad!
+         </button>
+         <div class="collapse" id="linkToSite" style="margin-top: 3px">
+            <div class="card card-body">
+               <input class="form-control" type="text" name="linkToSite" placeholder="link">
+            </div>
+         </div>
+      </div>
+      <h3 style="text-align: center; margin-bottom: 20px">
+      Make changes: </h1>
+      <% } %>
+      <div class="form-group">
+         <span class="form-control btn btn-outline-success">Confirm you're going<input type="checkbox" id="confirmed" style="margin-left: 30px" name="confirmed"></span>
+      </div>
+      <hr>
+      <div class="form-group">
+         <select class="form-control" id="trans" name="trans">
+            <option disabled selected value> -- select an option -- </option>
+            <option>I am a passenger</option>
+            <option>I am a driver</option>
+         </select>
+      </div>
+      <div class="form-group">
+         <label for="seats"> If you are driving, how many people can you bring?</label>
+         <select class="form-control" id="seats" name="seats" disabled>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+         </select>
+      </div>
+      <br>
+      <div class="form-group">
+         <label for="name">Propose an Activity</label>
+         <input class="form-control" id="activity" type="text" name="activity">
+      </div>
+      <div class="form-group">
+         <label for="name">Add Something to Bring</label>
+         <input class="form-control" id="newstuff" type="text" name="newstuff">
+      </div>
+      <hr>
+      <div class="form-group">
+         <label for="name"><strong>Enter the PIN given by the Event Organizer</strong></label>
+         <input class="form-control" id="pin" type="number" name="pin" placeholder="4-digit PIN">
+      </div>
+      <div class="form-group">
+         <button class="btn btn-lg btn-primary btn-block">Update Plan!</button>
+   </form>
+   <a href="/">Go Back</a>
+   </div>
+</div>
+<script>
+   trans = document.querySelector("#trans");
+   seats = document.querySelector("#seats");
+   
+   seats.disabled = true;
+   
+   trans.addEventListener("input", function(){
+       if(trans.value == "I am a driver") {
+           seats.disabled = false;
+       }
+       if (trans.value == "I am a passenger") {
+           seats.disabled = true;
+       }
+   })
+</script>
+<% include ./partials/footer %>

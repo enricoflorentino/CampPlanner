@@ -1,0 +1,187 @@
+<% include ./partials/header %>
+<div class="container">
+   <div class="row">
+      <div class="col-md-9">
+         <h1 class="display-5"><%=camp.name%><a style="float: right" href="/plan/<%=camp._id%>/edit" class="btn btn-lg btn-primary">Perform Action</a></h1>
+         <p class="text-muted"> created by <%=camp.creator.username%></p>
+         <hr>
+         <div class="alert alert-primary">
+            <h3  id="countdownText"><i class="fas fa-hourglass-half"></i> You're leaving in <span id="days"></span> days and <span id="hours"></span> hours!</h3>
+         </div>
+         <div class="row">
+            <div class="col-md-8">
+               <div id="details">
+                  <div class="card border-dark">
+                     <div class="card-header text-muted">
+                        provided by event organizer
+                     </div>
+                     <div class="card-body">
+                        <h5 class="card-title"><i class="fas fa-info-circle"></i> Details</h5>
+                        <p><i class="fas fa-user-ninja"></i><strong> Event Organizer: </strong><%=camp.creator.firstname%> <%=camp.creator.lastname%></p>
+                        <p><i class="far fa-calendar-check"></i><strong> Start Date:</strong> <%=camp.beginDate.toDateString()%></p>
+                        <%if(camp.beginDate.getHours() && camp.beginDate.getMinutes() < 10) { %>
+                        <p><strong><i class="far fa-clock"></i> Start Time:</strong> <%=camp.beginDate.getUTCHours()%>:0<%=camp.beginDate.getUTCMinutes()%></p>
+                        <% } else if(camp.beginDate.getUTCMinutes() > 10) { %>
+                        <p><strong><i class="far fa-clock"></i> Start Time:</strong> <%=camp.beginDate.getUTCHours()%>:<%=camp.beginDate.getUTCMinutes()%></p>
+                        <% } %>
+                        <p><i class="far fa-calendar-minus"></i><strong> End Date:</strong> <%=camp.endDate.toDateString()%></p>
+                        <%if(camp.endDate.getHours() && camp.endDate.getUTCMinutes() < 10) { %>
+                        <p><strong><i class="far fa-clock"></i> End Time:</strong> <%=camp.endDate.getUTCHours()%>:0<%=camp.endDate.getUTCMinutes()%></p>
+                        <% } else if(camp.endDate.getUTCMinutes() > 10) { %>
+                        <p><strong><i class="far fa-clock"></i> End Time:</strong> <%=camp.endDate.getUTCHours()%>:<%=camp.endDate.getUTCMinutes()%></p>
+                        <% } %>
+                        <p><i class="fas fa-users"></i><strong> Number of people invited: </strong><%=camp.numPpl%></p>
+                        <p><i class="fas fa-map-marker-alt"></i><strong> Address: </strong><%=camp.address%></p>
+                        <% if(camp.budget) { %>
+                        <p><i class="fas fa-dollar-sign"></i> <strong> Group Budget: </strong> $<%=camp.budget%></p>
+                        <% } %> 
+                        <% if(camp.linkToSite) { %>
+                        <p><a href="<%=camp.linkToSite%>"><strong><i class="fas fa-link"></i> Provided Link </strong></a></p>
+                        <% } %>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div id="listPpl" class="col-md-4 scrollable">
+               <table class="table table-hover table-borderless">
+                  <thead id="theadstyle">
+                     <th scope="col" style="text-align:center"><i class="fas fa-user-check"></i> Attendance
+                     </th>
+                  </thead>
+                  <tbody>
+                     <%for(var i = 0; i < camp.invited.length; i++) { %>
+                     <tr>
+                        <td><i class="fas fa-user"></i> <%=camp.invited[i]%><span id="listicon"><i class="fas fa-check-circle"></i></span></td>
+                     </tr>
+                     <% } %>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-3">
+         <div id="box" style="position:relative;height:250px;"></div>
+         <button id="showTrip" class="btn btn-light" onClick="showTrip();">Show Trip Dates</button>
+         <br>
+      </div>
+   </div>
+   <hr>
+   <div class="row">
+      <div class="col-md-6">
+         <h1 class="display-2">Plan out how everyone is getting to the cottage here</h1>
+      </div>
+      <div id="drivers" class="col-md-3 scrollable">
+         <table class="table table-hover table-borderless">
+            <thead id="theadstyle">
+               <th style="text-align:center" scope="col"><i class="fas fa-car"></i> Drivers</th>
+            </thead>
+            <tbody>
+               <%for(var i = 0; i < camp.drivers.length; i++) { %>   
+               <tr>
+                  <td><i class="fas fa-car-side"></i> <%=camp.drivers[i].drivername%><span id="listicon"><%=camp.drivers[i].seats%></span></td>
+               </tr>
+               <% } %>
+            </tbody>
+         </table>
+      </div>
+      <div id="riders" class="col-md-3 scrollable">
+         <table class="table table-hover table-borderless">
+            <thead id="theadstyle">
+               <th style="text-align:center" scope="col"><i class="far fa-hand-paper"></i> Passengers</th>
+            </thead>
+            <tbody>
+               <%for(var i = 0; i < camp.passengers.length; i++) { %>
+               <tr>
+                  <td><i class="fas fa-male"></i> <%=camp.passengers[i]%><span id="listicon"></span></td>
+               </tr>
+               <% } %>
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <hr>
+   <div class="row">
+      <div id="activities" class="col-md-3 scrollable">
+         <table class="table table-hover table-borderless">
+            <thead id="theadstyle">
+               <th style="text-align:center" scope="col" style="text-align: center"><i class="fas fa-football-ball"></i> Activities</th>
+            </thead>
+            <tbody>
+               <%for(var i = 0; i < camp.activities.length; i++) { %>
+               <tr>
+                  <td><i class="fas fa-angle-right"></i> <%=camp.activities[i].activity%><span id="listicon"></span>
+                     <small class="text-muted">submitted by <%=camp.activities[i].reqname%></small>
+                  </td>
+               </tr>
+               <% } %>
+            </tbody>
+         </table>
+      </div>
+      <div id="activities" class="col-md-3 scrollable">
+         <table class="table table-hover table-borderless">
+            <thead id="theadstyle">
+               <th scope="col" style="text-align: center"><i class="fas fa-briefcase"></i> What To Bring</th>
+            </thead>
+            <tbody>
+               <%for(var i = 0; i < camp.bringStuff.length; i++) { %>
+               <tr>
+                  <td><i class="fas fa-check"></i> <%=camp.bringStuff[i].stuff%><span id="listicon"></span>
+                     <small class="text-muted">submitted by <%=camp.bringStuff[i].reqname%></small>
+                  </td>
+               </tr>
+               <% } %>
+            </tbody>
+         </table>
+      </div>
+      <div class="col-md-6">
+         <h1 class="display-3">Make sure everyone knows what to bring and propose activities</h1>
+      </div>
+   </div>
+   <hr>
+   <% if(currentUser  && camp.creator.id.equals(currentUser._id)) { %>
+   <form class="delete-form" action="/plan/<%=camp._id%>?_method=DELETE" method="POST">
+      <button class="form-control btn btn-sm btn-danger">Delete Plan</button>
+   </form>
+   <% } %>
+</div>
+<script>
+   var camp = <%- JSON.stringify(camp) %>;
+   var calendar = new dhtmlXCalendarObject("box");
+   var counthours = document.querySelector("#hours");
+   var countdays = document.querySelector("#days");
+   var showTripButton = document.querySelector("#showTrip");
+   
+   var begin = new Date(camp.beginDate);
+   var end = new Date(camp.endDate);
+   var begintime = begin.getTime();
+   var now = new Date().getTime();
+   var showDates = false;
+   
+   var distance = begintime - now;
+   var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+   var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+   
+   // setting up calendar
+   calendar.setWeekStartDay(7);
+   calendar.hideTime();
+   calendar.show();
+   
+   //setting up time display
+   countdays.textContent = days;
+   counthours.textContent = hours;
+   
+   function showTrip(){
+       if (!showDates) {
+         calendar.setDate(begin);
+         calendar.setSensitiveRange(begin, end);
+         showTripButton.textContent = "Revert";
+         showDates = true;
+       } else {
+           calendar.clearSensitiveRange();
+           calendar.setDate(now);
+           showTripButton.textContent = "Show Trip Dates";
+           showDates = false;
+       }
+   }
+</script> 
+<% include ./partials/footer %>

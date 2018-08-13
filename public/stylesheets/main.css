@@ -1,0 +1,139 @@
+body {
+    padding-bottom: 10px;
+}
+#logo {
+    font-family: 'Do Hyeon', sans-serif;
+}
+
+.navbar {
+    margin-bottom: 20px;
+}
+
+#time {
+    margin-top: 3px;
+}
+
+.shadow {
+    padding: 12px;
+    margin: 12px;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    3px 3px 5px 6px #ccc;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         3px 3px 5px 6px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
+}
+
+
+
+/* Removing some html features */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+.dhtmlxcalendar_cell_month_weekend {
+    color: #c0c0c0;
+}
+.dhtmlxcalendar_cell_weekend {
+    color: #c0c0c0;
+}
+
+#box {
+    margin-top: 20px;
+    margin-bottom: 18px;
+}
+
+#countdownText {
+    font-family: 'Roboto Mono', monospace;
+}
+
+#listPpl {
+    border: 1px solid black;
+    border-radius: 8px;
+    height: 487px;
+    overflow-y: scroll;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+tr {
+    border-bottom: 1px solid lightgray;
+}
+
+#listicon {
+    float: right;
+}
+
+.fa-check-circle {
+    color: limegreen;
+}
+
+
+#theadstyle {
+    border-bottom: 2px solid black;
+}
+
+
+#drivers {
+    border: 2px solid black;
+    border-radius: 8px;
+    height: 447px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0px;
+    margin-top: 20px;
+}
+
+#riders {
+    border: 2px solid black;
+    border-radius: 8px;
+    height: 447px;
+    overflow-y: scroll;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 20px;
+    margin-left: 0px;
+}
+
+#seats {
+    width: 90px;
+    float: right;
+    margin-left: 10px;
+}
+
+#activities {
+    border: 1px solid black;
+    border-radius: 8px;
+    height: 447px;
+    overflow-y: scroll;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 20px;
+}
+
+.lead {
+    color: black;
+    font-weight: 500;
+}
+
+
+.display-5 {
+    padding-bottom: 0px;
+}
+
+
+#landing {
+    background-color: rgba(211,211,211, 0.7);
+    width: 50%;
+    margin: 0 auto;
+    border-radius: 8px;
+    padding-bottom: 20px;
+}
+
+.carousel-caption {
+    padding-bottom: 0px;
+    color: black;
+}
+
+#indextable {
+    background-color: white;
+}

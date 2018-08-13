@@ -1,0 +1,76 @@
+<% include ./partials/header %>
+<div class="container">
+   <h1 class="display-3" style="text-align: center;">Create a new plan</h1>
+   <div style="width: 40%; margin: 30px auto;">
+      <form class="shadow" action="/plan" method="POST">
+         <div class="form-group">
+            <label for="name">Give your plan a name!</label>
+            <input class="form-control" id="name" type="text" name="name" maxlength="25" required>
+         </div>
+         <div class="form-group">
+            <label for="numPpl">How many people are going?</label>
+            <input class="form-control" id="numPpl" type="number" value="1" name="numPpl" min="0" required>
+         </div>
+         <div class="form-group">
+            <label for="numPpl">Where is it?</label>
+            <input class="form-control" id="address" type="text" placeholder="location" name="address">
+         </div>
+         <div class="form-group">
+            <label for="beginDate">Start date</label>
+            <input class="form-control" id="beginDate" type="date" name="beginDate" required>
+         </div>
+         <div class="form-group">
+            <div class="collapse time">
+               <div class="card card-body">
+                  <input class="form-control" id="beginTime" type="time" name="beginTime">
+               </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <label for="endDate">End date</label>
+            <input class="form-control" id="endDate" type="date" name="endDate" required>
+         </div>
+         <div class="collapse time">
+            <div class="card card-body">
+               <input class="form-control" id="endTime" type="time" name="endTime">
+            </div>
+         </div>
+         <button class="form-control btn btn-dark" type="button" data-toggle="collapse" data-target=".time" aria-expanded="false">
+         Set a specific time!
+         </button>
+         <hr>
+         <div class="form-group">
+            <button class="form-control btn btn-success" type="button" data-toggle="collapse" data-target="#budget" aria-expanded="false">
+            Do you have a budget?
+            </button>
+            <div class="collapse" id="budget" style="margin-top: 3px">
+               <div class="card card-body">
+                  <input class="form-control" type="number" name="budget" placeholder="budget">
+               </div>
+            </div>
+         </div>
+         <div class="form-group">
+            <button class="form-control btn btn-link" type="button" data-toggle="collapse" data-target="#linkToSite" aria-expanded="false">
+            Provide a link to the cottage ad!
+            </button>
+            <div class="collapse" id="linkToSite" style="margin-top: 3px">
+               <div class="card card-body">
+                  <input class="form-control" type="text" name="linkToSite" placeholder="link (optional)">
+               </div>
+            </div>
+         </div>
+         <hr>
+         <div class="form-group">
+            <label for="pin"> Unique <strong>PIN</strong> for your plan: </label>
+            <small id="emailHelp" class="form-text text-muted">Share this PIN with your friends!</small>
+            <input class="form-control" aria-describedby="emailHelp" id="pin" name="passwordKey" type="text" value="1022" readonly>
+         </div>
+         <div class="form-group">
+            <button class="btn btn-lg btn-primary btn-block">Start Planning!</button>
+         </div>
+      </form>
+      <a href="/plan">Go Back</a>
+   </div>
+</div>
+<script type="text/javascript" src="/js/new.js"></script>
+<% include ./partials/footer %>
