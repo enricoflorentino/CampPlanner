@@ -129,9 +129,8 @@ tr {
     padding-bottom: 20px;
 }
 
-.carousel-caption {
-    padding-bottom: 0px;
-    color: black;
+#landingimage {
+    background-repeat: no-repeat;
 }
 
 #indextable {
