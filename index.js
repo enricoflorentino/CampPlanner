@@ -298,6 +298,6 @@ function remove_duplicates(arr) {
 }
 
 // Listening ....
-// app.listen(process.env.PORT, process.env.IP, function(){
-//     console.log("SERVER RUNNING");
-// });
+app.listen(process.env.PORT, process.env.IP, function(){
+    console.log("SERVER RUNNING");
+});
