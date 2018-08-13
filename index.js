@@ -29,7 +29,7 @@ mongoose.connect(process.env.DATABASEURL,  {useNewUrlParser: true });
 
 
 // Set up passport (app authentication)
-console.log(process.env.DATABASEURL);
+
 app.use(require("express-session")({
     secret: "this is my first personal project",
     resave: false,
