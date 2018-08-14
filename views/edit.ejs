@@ -14,7 +14,7 @@
       </div>
       <div class="form-group">
          <label for="numPpl">Change number of people going</label>
-         <input class="form-control" id="numPpl" type="number" value="1" name="numPpl" min="0" >
+         <input class="form-control" id="numPpl" type="number" name="numPpl" min="0" >
       </div>
       <div class="form-group">
          <label for="numPpl">Change location</label>
@@ -102,10 +102,13 @@
          <input class="form-control" id="newstuff" type="text" name="newstuff">
       </div>
       <hr>
+      <% if(currentUser  && !(camp.creator.id.equals(currentUser._id))) { %>
       <div class="form-group">
          <label for="name"><strong>Enter the PIN given by the Event Organizer</strong></label>
          <input class="form-control" id="pin" type="number" name="pin" placeholder="4-digit PIN">
       </div>
+      <% } %>
+   
       <div class="form-group">
          <button class="btn btn-lg btn-primary btn-block">Update Plan!</button>
    </form>
