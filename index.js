@@ -26,7 +26,6 @@ app.use(flash());
 
 // DATABASE CONNECTIONs
 mongoose.connect(process.env.DATABASEURL,  {useNewUrlParser: true });
-
 // Set up passport (app authentication)
 console.log(process.env.DATABASEURL);
 app.use(require("express-session")({

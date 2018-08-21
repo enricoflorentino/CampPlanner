@@ -157,6 +157,7 @@
    var calendar = new dhtmlXCalendarObject("box");
    var counthours = document.querySelector("#hours");
    var countdays = document.querySelector("#days");
+   var totalcounttext = document.querySelector("#countdownText");
    var showTripButton = document.querySelector("#showTrip");
    
    var begin = new Date(camp.beginDate);
@@ -175,8 +176,12 @@
    calendar.show();
    
    //setting up time display
-   countdays.textContent = days;
+   if (days<0 || hours <0){
+      totalcounttext.textContent = "Trip planning completed!";
+   } else {
+      countdays.textContent = days;
    counthours.textContent = hours;
+   }
    
    function showTrip(){
        if (!showDates) {

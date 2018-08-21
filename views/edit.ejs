@@ -2,8 +2,7 @@
 <div class="container">
 <div style="width: 40%; margin: 15px auto;">
    <h1 style="text-align: center; margin-top: 40px">Update <%=camp.name%> as <%=currentUser.firstname%></h1>
-   <hr>
-   <form action="/plan/<%=camp._id%>?_method=PUT" method="POST">
+   <form class="shadow" action="/plan/<%=camp._id%>?_method=PUT" method="POST">
       <% if(currentUser  && camp.creator.id.equals(currentUser._id)) { %>
       <h3 style="text-align: center; margin-bottom: 20px" >
       Make changes as admin: </h1>
