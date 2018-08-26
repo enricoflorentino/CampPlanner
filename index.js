@@ -24,7 +24,7 @@ app.use(methodOR("_method"));
 app.set("view engine", "ejs");
 app.use(flash());
 
-// // DATABASE CONNECTIONs
+// // // DATABASE CONNECTIONs
 // mongoose.connect('mongodb://localhost:27017/camp', { useNewUrlParser: true });
 mongoose.connect(process.env.DATABASEURL,  {useNewUrlParser: true });
 // Set up passport (app authentication)
@@ -183,7 +183,7 @@ app.put("/plan/:id", isLoggedIn, function(req, res){
         } else {
             
             // Must provide PIN to submit changes
-            if (!camp.author.id.equals(req.user._id) && req.body.pin != camp.passwordKey) {
+            if (!camp.creator.id.equals(req.user._id) && req.body.pin != camp.passwordKey) {
                 req.flash("error", "Incorrect or no PIN!" );
                 return res.redirect("/plan");
             }
