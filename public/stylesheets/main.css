@@ -21,8 +21,6 @@ body {
   box-shadow:         3px 3px 5px 6px #ccc;  /* Opera 10.5, IE 9, Firefox 4+, Chrome 6+, iOS 5 */
 }
 
-
-
 /* Removing some html features */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -36,7 +34,6 @@ input::-webkit-inner-spin-button {
 .dhtmlxcalendar_cell_weekend {
     color: #c0c0c0;
 }
-
 #box {
     margin-top: 20px;
     margin-bottom: 18px;
@@ -67,11 +64,9 @@ tr {
     color: limegreen;
 }
 
-
 #theadstyle {
     border-bottom: 2px solid black;
 }
-
 
 #drivers {
     border: 2px solid black;
